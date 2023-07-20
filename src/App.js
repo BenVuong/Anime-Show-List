@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const App = () => {
+  
   const [shows, setShows] = useState([]);
   const [newShow, setNewShow] = useState('');
   const [newEpisodes, setNewEpisodes] = useState(0);
@@ -78,7 +79,7 @@ const App = () => {
       </div>
       <button onClick={handleAddShow}>Add Show</button>
 
-      {shows.map((show, index) => (
+      { shows.map((show, index) => (
         <div key={index}>
           <h2>{show.name}</h2>
 		  <h5>Genre: {show.genre}</h5>
