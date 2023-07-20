@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 const App = () => {
   
-  const [shows, setShows] = useState([]);
+  const [shows, setShows] = useState([
+    {
+        id: nanoid(),
+        name: 'Kong Ming',
+        totalEpisodes: '12',
+        episodesWatched: '0',
+		    genre: 'Music',
+    }
+  ]);
   const [newShow, setNewShow] = useState('');
   const [newEpisodes, setNewEpisodes] = useState(0);
   const [newGenre, setNewGenre] = useState('')
@@ -34,10 +43,12 @@ const App = () => {
   const handleAddShow = () => {
     if (newShow.trim() !== '') {
       const show = {
+        id: nanoid(),
         name: newShow,
         totalEpisodes: newEpisodes,
         episodesWatched: episodesWatched,
-		genre: newGenre 
+		    genre: newGenre,
+        
 
       };
       setShows([...shows, show]);
@@ -62,6 +73,10 @@ const App = () => {
     }
   };
 
+  const handleDelete = (id) => {
+    const newShow = shows.filter((show)=> show.id !==id);
+    setShows(newShow)
+  }
   return (
     <div>
       <h1>My Anime List</h1>
@@ -79,7 +94,7 @@ const App = () => {
       </div>
       <button onClick={handleAddShow}>Add Show</button>
 
-      { shows.map((show, index) => (
+      { shows.map((show, index,id) => (
         <div key={index}>
           <h2>{show.name}</h2>
 		  <h5>Genre: {show.genre}</h5>
@@ -87,6 +102,7 @@ const App = () => {
           <p>Episodes Watched: {show.episodesWatched}</p>
           <button onClick={() => handleIncrement(index)}>+</button>
           <button onClick={() => handleDecrement(index)}>-</button>
+          <button onClick={()=>handleDelete(show.id)}>Delete</button>
         </div>
       ))}
     </div>
