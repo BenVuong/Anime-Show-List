@@ -5,10 +5,10 @@ const App = () => {
   const [shows, setShows] = useState([
     {
       id: nanoid(),
-      name: "Kong Ming",
+      name: "Show Name goes here",
       totalEpisodes: "12",
       episodesWatched: "0",
-      genre: "Music",
+      genre: "Show Gennre goes here",
     },
   ]);
   const [newShow, setNewShow] = useState("");
@@ -77,6 +77,7 @@ const App = () => {
   return (
     <div>
       <h1>My Anime List</h1>
+      <h5>Keep track of your shows!</h5>
       <div>
         <label htmlFor="show-input">Show Name:</label>
         <input
